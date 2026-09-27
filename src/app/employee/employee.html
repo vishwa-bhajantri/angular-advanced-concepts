@@ -1,0 +1,15 @@
+<!-- <p>employee works!</p> -->
+<div class="card shadow-sm m-4">
+
+
+    <ng-content></ng-content>
+
+    <div class="card-header bg-primary text-white">
+        <ng-content select=".employee-title"></ng-content>
+        <!-- Hello World -->
+    </div>
+    <div class="card-body">
+        <ng-content select=".employee-information"></ng-content>
+        <!-- Contact Us -->
+    </div>
+</div>
