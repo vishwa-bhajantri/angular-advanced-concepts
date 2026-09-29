@@ -1,0 +1,60 @@
+<!-- <p>content-child works!</p> -->
+
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white py-3">
+        <h5 class="mb-0">Employee Information</h5>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="mb-4">
+            <ng-content></ng-content>
+        </div>
+    </div>
+
+
+    <div class="d-flex gap-2">
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-primary" (click)="Showemployee()">
+                Show Employee
+            </button>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-outline-primary" (click)="Showemployees()">
+                Show Employees
+            </button>
+        </div>
+
+    </div>
+
+    @if(FirstEmployee){
+    <div class="alert alert-success mt-4 mb-0">
+        <strong>{{FirstEmployee}}</strong>
+    </div>
+    }
+
+    @if(empList.length > 0){
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>SNO</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for(emp of empList;track $index){
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{emp}}</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+    }
+
+</div>
