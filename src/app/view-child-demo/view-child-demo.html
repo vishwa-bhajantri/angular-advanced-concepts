@@ -1,0 +1,81 @@
+<!-- <p>view-child-demo works!</p> -->
+
+
+<!-- Example of @View Child -->
+
+<!-- <div class="container mt-5">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            Employees
+        </div>
+        <div class="card-body">
+            <label class="form-label">
+                Employee Name
+            </label>
+            <input type="text" class="form-control" 
+                placeholder="Enter Employee Name" #employeeName/>
+
+            <button class="btn btn-primary mt-3"
+                    (click)="ShowEmployee()">
+                Show Employee
+            </button>
+            <p>{{emp}}</p>
+        </div>
+
+    </div>
+
+</div> -->
+
+
+
+
+
+<!-- Example of @ViewChildren -->
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        Employees
+    </div>
+    <div class="card-body">
+
+        <div class="mt-2">
+            <input type="text" class="form-control" value="John" #employee />
+        </div>
+
+        <div class="mt-2">
+            <input type="text" class="form-control" value="Peter" #employee />
+        </div>
+
+        <div class="mt-2">
+            <input type="text" class="form-control" value="Robert" #employee />
+        </div>
+
+        <button class="btn btn-primary mt-3" (click)="ShowEmployees()">
+            Show Employee
+        </button>
+
+    </div>
+
+    @if (employeeList.length > 0) {
+
+    <div>
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>SNO</th>
+                    <th>E Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (empname of employeeList; track $index) {
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ empname }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</div>
