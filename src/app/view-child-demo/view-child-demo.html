@@ -1,7 +1,7 @@
 <!-- <p>view-child-demo works!</p> -->
 
 
-<!-- Example of @View Child -->
+<!-- Example of view Child -->
 
 <div class="container mt-5">
 
@@ -10,17 +10,34 @@
             Employees
         </div>
         <div class="card-body">
+
+            <div>
             <label class="form-label">
                 Employee Name
             </label>
             <input type="text" class="form-control" 
                 placeholder="Enter Employee Name" #employeeName/>
+            </div>
+
+            <div>
+            <label class="form-label">
+                Employee Email
+            </label>
+            <input type="email" class="form-control" 
+                placeholder="Enter Employee Email" value="peter@yahoo.com" #employeeEmail/>
+            </div>
 
             <button class="btn btn-primary mt-3"
                     (click)="ShowEmployee()">
                 Show Employee
             </button>
-            <p>{{emp}}</p>
+
+            <button class="btn btn-secondary mt-3"
+                    (click)="ShowEmail()">
+                Show Email
+            </button>
+            <p>{{ employeeNameSt }}</p>
+            <p>{{ employeeEmailSt }}</p>
         </div>
 
     </div>
@@ -31,24 +48,24 @@
 
 
 
-<!-- Example of @ViewChildren -->
+<!-- Example of viewChildren -->
 
-<!-- <div class="card shadow-sm">
+<div class="card shadow-sm">
     <div class="card-header bg-primary text-white">
         Employees
     </div>
     <div class="card-body">
 
         <div class="mt-2">
-            <input type="text" class="form-control" value="John" #employee />
+            <input type="text" class="form-control" value="John" #employees />
         </div>
 
         <div class="mt-2">
-            <input type="text" class="form-control" value="Peter" #employee />
+            <input type="text" class="form-control" value="Peter" #employees />
         </div>
 
         <div class="mt-2">
-            <input type="text" class="form-control" value="Robert" #employee />
+            <input type="text" class="form-control" value="Robert" #employees />
         </div>
 
         <button class="btn btn-primary mt-3" (click)="ShowEmployees()">
@@ -78,4 +95,5 @@
         </table>
     </div>
     }
-</div> -->
+</div>
+{{employeeCount}}

@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, QueryList, 
+  ViewChild, ViewChildren, computed, signal, viewChild, 
+  viewChildren} from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,40 +8,55 @@ import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildre
   styleUrl: './view-child-demo.css',
   templateUrl: './view-child-demo.html',
 })
-export class ViewChildDemo implements AfterViewInit{
+export class ViewChildDemo {
 
 
-  // Example of @View Child
+  // Example of viewChild signal
 
-    @ViewChild('employeeName') employeeName !: ElementRef<HTMLInputElement>;
+    employeeName = viewChild<ElementRef<HTMLInputElement>>('employeeName');
+    selectedEmployeesName = signal('');
 
-    ngAfterViewInit(): void {
-      console.log(this.employeeName.nativeElement.value);
-    }
+    employeeEmail = viewChild<ElementRef<HTMLInputElement>>('employeeEmail');
+    selectedEmployeesEmail = signal('');
 
-    emp = ""
+    employeeNameSt: string = "";
+    employeeEmailSt: string = "";
+
     ShowEmployee(){
-      this.emp = this.employeeName.nativeElement.value;
-      console.log(this.employeeName.nativeElement.value);
+
+      this.employeeNameSt = this.employeeName()?.nativeElement.value?? "";
+      this.selectedEmployeesName.set(this.employeeNameSt)
+      //console.log(this.employeeNameSt);
+    }
+
+    ShowEmail(){
+      this.employeeEmailSt = this.employeeEmail()?.nativeElement.value?? "";
+      this.selectedEmployeesEmail.set(this.employeeEmailSt)
+      console.log(this.employeeEmailSt);
     }
 
 
 
 
-  //Example of @ViewChildren
+  //Example of viewChildren
 
-    @ViewChildren('employee') employees !: QueryList<ElementRef<HTMLAnchorElement>>;
+    //@ViewChildren('employee') employees !: QueryList<ElementRef<HTMLAnchorElement>>;
 
+    employees = viewChildren<ElementRef<HTMLInputElement>>('employees');
     employeeList :string[] = [];
+
+    employeeCount = computed(()=> this.employees().length)
 
     ShowEmployees(){
       
-      this.employees.forEach((employee:ElementRef)=>{
-        console.log(employee.nativeElement.value);
+      this.employees().forEach((employee:ElementRef)=>{
+       // console.log(employee.nativeElement.value);
 
         const name = employee.nativeElement.value;
         if(name)
           this.employeeList.push(name);
       })
+
+      console.log(this.employeeList);
     }
-}
+  }
